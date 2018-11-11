@@ -1,16 +1,27 @@
 language: node_js
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-multilib
+      - g++-8
+      - g++-multilib
+
 node_js:
   - node
   - 10
 
+os: osx
+
 cache:
-  yarn: true
-  directories:
-    - .npm
+  yarn: false # true
+  # directories:
+  #   - .npm
 
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --nightly
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 install: yarn install --ignore-scripts --ignore-engines
